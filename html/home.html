@@ -9,7 +9,8 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-  <link rel="stylesheet" href="./../css/home.css"/>
+  <link rel="stylesheet" href="../css/home.css"/>
+
   <!-- Mantém sua configuração do Tailwind (paleta preservada) -->
   <script>
     tailwind.config = {
@@ -30,9 +31,6 @@
       }
     }
   </script>
-
-  <!-- CSS separado -->
-  
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100">
 
@@ -154,9 +152,50 @@
         </div>
       </section>
     </main>
+
+    <!-- Mascote fixo (clicável) - substitui a imagem do robô -->
+    <button id="mascoteBtn" class="mascote-btn" aria-label="Abrir atividades do dia" title="Atividades do Dia">
+      <img src="../img/mascote.png" alt="Mascote da plataforma" class="mascote-img"/>
+    </button>
+
+    <!-- Painel modal de Atividades do Dia (inicia escondido) -->
+    <aside id="painelAtividades" class="painel-atividades hidden" role="dialog" aria-modal="true" aria-labelledby="atividadesTitle">
+      <div class="painel-cabecalho">
+        <h3 id="atividadesTitle">Atividades do Dia</h3>
+        <button id="fecharPainel" class="fechar-btn" aria-label="Fechar painel">✕</button>
+      </div>
+
+      <ul class="atividades-list">
+        <li class="atividade-item">
+          <span class="material-symbols-outlined">task_alt</span>
+          <div>
+            <p class="atividade-text">Complete 3 exercícios de crase.</p>
+            <p class="atividade-meta">Recompensa: 200 pontos</p>
+          </div>
+        </li>
+        <li class="atividade-item">
+          <span class="material-symbols-outlined">videocam</span>
+          <div>
+            <p class="atividade-text">Assista à videoaula sobre parônimos.</p>
+            <p class="atividade-meta">Recompensa: 120 pontos</p>
+          </div>
+        </li>
+        <li class="atividade-item">
+          <span class="material-symbols-outlined">edit</span>
+          <div>
+            <p class="atividade-text">Escreva uma frase usando vírgula.</p>
+            <p class="atividade-meta">Recompensa: 80 pontos</p>
+          </div>
+        </li>
+      </ul>
+      <div class="painel-footer">
+        <button id="btnCompletarTudo" class="btn-primary">Marcar todas como completas</button>
+      </div>
+    </aside>
+
   </div>
 
   <!-- JS -->
-  <script src="js/home.js"></script>
+  <script src="../js/home.js"></script>
 </body>
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loja de Avatares - LínguaTech</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- CSS atualizado -->
+  <link rel="stylesheet" href="../css/tela_compra.css" />
+</head>
+<body class="page">
+
+  <header class="topo">
+    <div class="titulo">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <h1>Loja de Avatares</h1>
+    </div>
+
+    <div class="user-info" id="userInfo">
+      <div class="saldo-label">Seu saldo</div>
+      <div class="saldo-valor" id="saldoValor">0 moedas</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Top row: preview/painel compra à direita (pequena) -->
+    <aside class="painel-preview" id="painelPreview" aria-live="polite">
+      <div class="preview-box">
+        <div id="previewImage" class="preview-image" aria-hidden="true"></div>
+        <div class="preview-info">
+          <h3 id="previewNome">Selecione um avatar</h3>
+          <p id="previewDescricao">Clique em um avatar para ver detalhes e comprar.</p>
+          <div class="preview-preco" id="previewPreco"></div>
+
+          <div class="acoes">
+            <button id="btnComprarPreview" class="btn btn-primary" disabled>Comprar</button>
+            <a href="../html/perfil.html" class="btn btn-ghost">Voltar ao Perfil</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-adicional">
+        <h4>Dicas</h4>
+        <ul>
+          <li>Ganhe moedas completando atividades e desafios.</li>
+          <li>Avatares premium custam mais, avatares básicos são mais baratos.</li>
+          <li>Depois da compra, o avatar aparecerá no seu perfil.</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Segunda linha: grid de avatares ocupa largura inteira abaixo -->
+    <section class="colecao">
+      <div class="colecao-header">
+        <h2>Avatares disponíveis</h2>
+        <p class="colecao-sub">Compre avatares para personalizar seu perfil.</p>
+      </div>
+
+      <div id="gridAvatares" class="grid-avatares" aria-live="polite">
+        <!-- itens gerados por JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- JS separado (mesma lógica; file atualizado só com seletores compatíveis) -->
+  <script src="../js/tela_compra.js" defer></script>
+</body>
+</html>

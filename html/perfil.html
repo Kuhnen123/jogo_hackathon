@@ -1,14 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html class="light" lang="pt-br">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Perfil do Estudante</title>
 
+  <!-- Tailwind + fonts + icons (mantive como no original) -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
+  <!-- Config do Tailwind (mantive sua paleta) -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#536CCF",
+            "primary-dark": "#3855C7",
+            "primary-light": "#CADEFC",
+            "gray-custom": "#C4C4C4",
+            "background-light": "#f6f6f8",
+            "background-dark": "#111521",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "0.75rem",
+            "xl": "1rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- CSS separado -->
   <link rel="stylesheet" href="./../css/perfil.css"/>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display">
@@ -44,20 +74,19 @@
           </div>
         </div>
 
-        <!-- Meus Avatares -->
+        <!-- My Avatars Section -->
         <div>
           <h2 class="text-gray-900 dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Meus Avatares</h2>
 
           <div id="listaAvatares" class="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4 p-4">
-            <!-- desbloqueado (exemplo) -->
+            <!-- cada avatar tem a classe `.avatar-item` e atributo data-avatar com a url -->
             <div class="flex flex-col gap-3 text-center">
-              <div class="relative group avatar-item" data-avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuBW7tGhYJNbUXnEwtDIRXo_yscSQGbKdkG-n7K4X8syZu9i86TPVXNoOblsV0YYWh3noTWwzLawQU3CZmUNxV2Ov3sgvd4jbCk9RavfSR08JFGiXBvwHf_7tMPolf5q0TW3T1_FlGfAPzQz1gSzMdnIIUKGM7roLL1XKdYM0NEVgN3Omz413DyM9c-069MSBf3ktvPcndzfzWWgBlgrrNWXD2BlAfA0NjkKtlt3NjXnzDR-9lbJsHULjms6zz1-aW8zZwCsnAl40J4">
+              <div class="relative group avatar-item selected" data-avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuBW7tGhYJNbUXnEwtDIRXo_yscSQGbKdkG-n7K4X8syZu9i86TPVXNoOblsV0YYWh3noTWwzLawQU3CZmUNxV2Ov3sgvd4jbCk9RavfSR08JFGiXBvwHf_7tMPolf5q0TW3T1_FlGfAPzQz1gSzMdnIIUKGM7roLL1XKdYM0NEVgN3Omz413DyM9c-069MSBf3ktvPcndzfzWWgBlgrrNWXD2BlAfA0NjkKtlt3NjXnzDR-9lbJsHULjms6zz1-aW8zZwCsnAl40J4">
                 <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-primary dark:border-primary-dark" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBW7tGhYJNbUXnEwtDIRXo_yscSQGbKdkG-n7K4X8syZu9i86TPVXNoOblsV0YYWh3noTWwzLawQU3CZmUNxV2Ov3sgvd4jbCk9RavfSR08JFGiXBvwHf_7tMPolf5q0TW3T1_FlGfAPzQz1gSzMdnIIUKGM7roLL1XKdYM0NEVgN3Omz413DyM9c-069MSBf3ktvPcndzfzWWgBlgrrNWXD2BlAfA0NjkKtlt3NjXnzDR-9lbJsHULjms6zz1-aW8zZwCsnAl40J4");'></div>
                 <div class="overlay-text">Selecionado</div>
               </div>
             </div>
 
-            <!-- desbloqueado (outro exemplo) -->
             <div class="flex flex-col gap-3 text-center">
               <div class="relative group avatar-item cursor-pointer" data-avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuCYNGIvYD0uxBQQzx0bPWjhsDjflTf1xA8MigiT3FcEQDh0FeFeyienEEIXud530gjb_Cw0irZCrwf6PfNGuNuwUTJk_cXjHbnL7asmX7LRtpZGPu2M8vmbj2vY8u_MvZnYuwoOdd84auFO68Yk3dE3wafQ7IVBZipfhUrA9BxUl8z0ymP4Q9xeTqPES32qL1DD8GVfI5PrF6bT_BoAE7gReu46-ZI8Ce2mEHDKI6yeQ_xRwZ5uavU2O0hdSPg3W1i0R0nIZSr9Pzo">
                 <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-transparent hover:border-primary-light" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYNGIvYD0uxBQQzx0bPWjhsDjflTf1xA8MigiT3FcEQDh0FeFeyienEEIXud530gjb_Cw0irZCrwf6PfNGuNuwUTJk_cXjHbnL7asmX7LRtpZGPu2M8vmbj2vY8u_MvZnYuwoOdd84auFO68Yk3dE3wafQ7IVBZipfhUrA9BxUl8z0ymP4Q9xeTqPES32qL1DD8GVfI5PrF6bT_BoAE7gReu46-ZI8Ce2mEHDKI6yeQ_xRwZ5uavU2O0hdSPg3W1i0R0nIZSr9Pzo");'></div>
@@ -65,44 +94,42 @@
               </div>
             </div>
 
-            <!-- skin bloqueada: irá redirecionar para comprar-skins.html -->
             <div class="flex flex-col gap-3 text-center">
-              <div class="relative group avatar-item locked"
-                   data-skin-id="skin-ouro"
-                   data-skin-name="Skin Ouro">
-                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
-                </div>
-                <div class="overlay-text">Comprar</div>
-              </div>
-            </div>
-
-            <!-- outra skin bloqueada -->
-            <div class="flex flex-col gap-3 text-center">
-              <div class="relative group avatar-item locked"
-                   data-skin-id="skin-prata"
-                   data-skin-name="Skin Prata">
-                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
-                </div>
-                <div class="overlay-text">Comprar</div>
-              </div>
-            </div>
-
-            <!-- placeholders bloqueados (exemplos) -->
-            <div class="flex flex-col gap-3 text-center">
-              <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
+              <div class="relative group avatar-item cursor-pointer" data-avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuD2zSr6EmYk0jNR0HGH1u88ckiQcV_j_mwMdIVped6oN3Sv_k_stRbl077mMIEI6WaARL06cjaNozrSIpZJU_-SUfNKmLexhqVqUStqqndkOGquu15iO7Kcpj-K7mXH_KhvPRjX852ZFtVxaFagkjlA_QUlFWM9UqQMWXDDzOPGoYEI7M8tDfJDlgxIItcCE9j2_dZNgx8GP89LLYQlGQqTOqD_Uf4omDi4oaSOjdd3yCE2zpgSqJbUxt5cm6pXVl2ZM-0kDRmpbNc">
+                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-transparent hover:border-primary-light" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2zSr6EmYk0jNR0HGH1u88ckiQcV_j_mwMdIVped6oN3Sv_k_stRbl077mMIEI6WaARL06cjaNozrSIpZJU_-SUfNKmLexhqVqUStqqndkOGquu15iO7Kcpj-K7mXH_KhvPRjX852ZFtVxaFagkjlA_QUlFWM9UqQMWXDDzOPGoYEI7M8tDfJDlgxIItcCE9j2_dZNgx8GP89LLYQlGQqTOqD_Uf4omDi4oaSOjdd3yCE2zpgSqJbUxt5cm6pXVl2ZM-0kDRmpbNc");'></div>
+                <div class="overlay-text">Selecionar</div>
               </div>
             </div>
 
             <div class="flex flex-col gap-3 text-center">
-              <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
+              <div class="relative group avatar-item cursor-pointer" data-avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuAT6e0zTPu7V11fjeiWyhGP90JMFtpenij_Ss3C-XFpTOGv6Nf_uA0A90eLgWpxzK5N0QlOAZs7ny7iLpEzGcbG8SIahHsaileFuMVjUGhVeFWpt1bviFjyY0QwOoYIpxH3f0_D0Crzse460BLhN9uspyIpJ6Yyvdh-4q_sT97YK6oF9dfiUCKhANyoWwDTFx5GoJDxUuKQUxV0J0XNP6MRJkzQx6P_moypJMw7GdNJ5e-VHunlWoB3YyKv2SgX5w5yrSpBsOKTpMQ">
+                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-transparent hover:border-primary-light" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAT6e0zTPu7V11fjeiWyhGP90JMFtpenij_Ss3C-XFpTOGv6Nf_uA0A90eLgWpxzK5N0QlOAZs7ny7iLpEzGcbG8SIahHsaileFuMVjUGhVeFWpt1bviFjyY0QwOoYIpxH3f0_D0Crzse460BLhN9uspyIpJ6Yyvdh-4q_sT97YK6oF9dfiUCKhANyoWwDTFx5GoJDxUuKQUxV0J0XNP6MRJkzQx6P_moypJMw7GdNJ5e-VHunlWoB3YyKv2SgX5w5yrSpBsOKTpMQ");'></div>
+                <div class="overlay-text">Selecionar</div>
               </div>
             </div>
 
-          </div>
+            <!-- Primeiro avatar bloqueado com link -->
+<div class="flex flex-col gap-3 text-center">
+  <button 
+    onclick="window.location.href='./../html/tela_compra.html'"
+    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+    title="Comprar skin"
+  >
+    <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
+  </button>
+</div>
+
+<!-- Segundo avatar bloqueado com link -->
+<div class="flex flex-col gap-3 text-center">
+  <button 
+    onclick="window.location.href='./../html/tela_compra.html'"
+    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+    title="Comprar skin"
+  >
+    <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
+  </button>
+</div>
+
         </div>
 
         <!-- Progress Section with Tabs -->
@@ -118,8 +145,11 @@
             </div>
           </div>
 
+          <!-- Performance History Tab Content -->
           <div id="conteudo-historico" class="p-6 tab-content">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Meu Desempenho</h3>
+
+            <!-- Performance Chart -->
             <div class="w-full h-64 bg-primary-light/30 dark:bg-gray-800 rounded-lg p-4 flex items-end gap-2">
               <div class="flex-1 rounded-t-md bg-primary" style="height: 60%;"></div>
               <div class="flex-1 rounded-t-md bg-primary" style="height: 40%;"></div>
@@ -140,6 +170,7 @@
               <span>Sem 7</span>
             </div>
 
+            <!-- Recent Activities -->
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-8 mb-4">Atividades Recentes</h3>
             <ul class="space-y-3">
               <li class="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50">
@@ -166,9 +197,11 @@
             </ul>
           </div>
 
+          <!-- Achievements Tab Content (hidden by default) -->
           <div id="conteudo-conquistas" class="p-6 tab-content hidden">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Conquistas</h3>
             <p class="text-gray-600 dark:text-gray-400">Aqui aparecerão as conquistas do estudante.</p>
+            <!-- Você pode adicionar cartas de conquistas aqui -->
           </div>
         </div>
 

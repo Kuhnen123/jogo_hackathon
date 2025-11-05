@@ -1,128 +1,58 @@
-/* estilo-perfil.css - completo e com suporte a loja de skins */
+/* estilo-perfil.css
+   Mantive sua paleta de cores e classes utilitárias; aqui ficam os estilos customizados.
+*/
 
-/* material symbols */
-.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.material-symbols-outlined{
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
 
-/* reset / fonte */
-* { box-sizing: border-box; }
-html,body { height:100%; margin:0; padding:0; font-family: 'Plus Jakarta Sans', sans-serif; }
+/* small reset */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif}
 
-/* core */
-.relative { position: relative; }
+/* container principal */
+.relative{position:relative}
 
 /* overlays dos avatares */
-.avatar-item { position: relative; cursor: pointer; outline: none; }
-.avatar-item .overlay-text {
-  position: absolute;
-  inset: 0;
+.avatar-item{position:relative;cursor:pointer}
+.avatar-item .overlay-text{
+  position:absolute;
+  inset:0;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius: 9999px;
-  background: rgba(0,0,0,0.0);
-  color: #fff;
-  font-weight: 700;
-  opacity: 0;
-  transition: opacity .18s ease, transform .18s ease, background .18s ease;
-  transform: translateY(6px);
-  pointer-events: none;
+  border-radius:9999px;
+  background:rgba(0,0,0,0.55);
+  color:#fff;
+  font-weight:700;
+  opacity:0;
+  transition:opacity .18s ease;
+}
+.avatar-item:hover .overlay-text,
+.avatar-item.selected .overlay-text{
+  opacity:1;
 }
 
-/* selected avatar */
-.avatar-item.selected .overlay-text { opacity: 1; transform: translateY(0); background: rgba(0,0,0,0.5); }
-.avatar-item.selected .w-full { border-color: #536CCF; transform: translateY(-4px); box-shadow: 0 10px 24px rgba(16,24,40,0.08); }
-
-/* locked skins overlay styling (Comprar) */
-.avatar-item.locked .overlay-text {
-  background: linear-gradient(180deg, rgba(83,108,207,0.88), rgba(50,74,166,0.9));
-  opacity: 0;
-  transform: translateY(6px);
-}
-.avatar-item.locked:hover .overlay-text,
-.avatar-item.locked.selected .overlay-text,
-.avatar-item.locked:focus-within .overlay-text {
-  opacity: 1;
-  transform: translateY(0);
+/* selected avatar visual */
+.avatar-item.selected .w-full{
+  border-color: var(--tw-color-primary, #536CCF);
+  transform:translateY(-4px);
+  box-shadow:0 10px 24px rgba(16,24,40,0.08);
 }
 
-/* small avatar image wrapper */
-.w-full { transition: all .12s ease; border-radius: 9999px; }
+/* Tab styles */
+.tab{display:flex;align-items:center;gap:.5rem;padding:0 .25rem;text-decoration:none}
+.tab-active{border-bottom:3px solid #536CCF;color:#3855C7}
 
-/* tab */
-.tab { display:flex; align-items:center; gap:.5rem; padding:0 .25rem; text-decoration:none; color:inherit; }
-.tab-active { border-bottom: 3px solid #536CCF; color: #3855C7; }
+/* tab-content show/hide */
+.tab-content.hidden{display:none}
 
-/* tab content hidden */
-.tab-content.hidden { display:none; }
-
-/* basic visuals for lists */
-.sug-item, .avatar-item { -webkit-tap-highlight-color: transparent; }
-
-/* accessibility focus style */
-.avatar-item:focus { box-shadow: 0 0 0 4px rgba(83,108,207,0.12); border-radius:9999px; }
-
-/* color helpers (kept palette) */
-.bg-primary { background: #536CCF; }
-.text-primary { color: #536CCF; }
-.border-primary { border-color: #536CCF; }
-
-/* tiny responsive */
-@media (max-width: 980px) {
-  .avatar-item .overlay-text { font-size: .95rem; }
+/* overlay text style fallback (mobile) */
+@media (max-width:640px){
+  .overlay-text{font-size:0.9rem}
 }
 
-/* ===== Correção: evita avatares gigantes e centraliza o grid ===== */
-
-/* Limita a largura das colunas do grid de avatares e centraliza os itens */
-#listaAvatares {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 160px)); /* cada coluna fica entre 120 e 160px */
-  gap: 1rem;
-  justify-content: start;    /* alinha o grid à esquerda; troque para center se preferir centralizado */
-  justify-items: center;     /* centraliza cada item dentro da célula */
-  align-items: start;
-}
-
-/* Força largura/altura dos círculos dos avatares — sobrescreve .w-full global */
-#listaAvatares .w-full {
-  width: 140px !important;    /* tamanho padrão do círculo */
-  height: 140px !important;
-  max-width: 160px;
-  max-height: 160px;
-  min-width: 100px;
-  min-height: 100px;
-  border-radius: 9999px;
-  background-size: cover;
-  background-position: center;
-  transition: transform .12s ease, box-shadow .12s ease;
-  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
-}
-
-/* overlay e selected permanecem funcionais, só garantimos que não vao esticar */
-#listaAvatares .overlay-text {
-  border-radius: 9999px;
-  inset: 0;
-}
-
-/* Se houver itens que usam apenas o container (quando não existe .w-full), aplica o mesmo tamanho */
-#listaAvatares .avatar-item > div:not(.w-full) {
-  width: 140px;
-  height: 140px;
-  border-radius: 9999px;
-}
-
-/* melhora responsividade: reduz avatar em telas menores */
-@media (max-width: 900px) {
-  #listaAvatares { grid-template-columns: repeat(auto-fit, minmax(110px, 140px)); }
-  #listaAvatares .w-full,
-  #listaAvatares .avatar-item > div:not(.w-full) { width: 120px !important; height: 120px !important; }
-}
-
-@media (max-width: 520px) {
-  #listaAvatares { grid-template-columns: repeat(auto-fit, minmax(90px, 110px)); gap: .8rem; }
-  #listaAvatares .w-full,
-  #listaAvatares .avatar-item > div:not(.w-full) { width: 96px !important; height: 96px !important; }
-}
-
-/* garante que o card pai não corte sombras (fallback) */
-.bg-white, .card-hero { overflow: visible !important; }
+/* small utility */
+.bg-primary{background:#536CCF}
+.text-primary{color:#536CCF}
+.border-primary{border-color:#536CCF}

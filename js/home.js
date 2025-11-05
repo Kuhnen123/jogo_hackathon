@@ -1,11 +1,27 @@
 // js/home.js
-// Integra Home com painel de "Atividades do Dia" via mascote
-// Comentários em português conforme solicitado.
+// Home - integração de sessão, mascote/painel de atividades, navegação por ROTAS
+// Comentários em português para facilitar a manutenção.
 
 document.addEventListener('DOMContentLoaded', () => {
-  const chaveSessao = 'lingua_session';
+  /* ---------- CONFIGURAÇÕES / CHAVES ---------- */
+  const CHAVE_SESSAO = 'lingua_session'; // localStorage para dados do usuário
 
-  // elementos da UI
+  /* ---------- MAPA DE ROTAS (edite conforme suas pastas) ---------- */
+  const ROTAS = {
+    // botões principais (cards)
+    video: '../html/video-aulas.html',
+    atividades: '../html/atividades.html',
+    jogos: '../html/jogos.html',
+    perfil: '../html/perfil.html',
+
+    // botões sugeridos (cada ação aponta para uma tela específica)
+    'iniciar-aula': '../html/aula-acentuacao.html',
+    'iniciar-desafio': '../html/desafio-crase.html',
+    'iniciar-aula-2': '../html/aula-concordancia.html'
+  };
+
+  /* ---------- ELEMENTOS DO DOM ---------- */
+  // header / painel do usuário
   const nomeHeader = document.getElementById('nomeUsuarioHeader');
   const nomeCard = document.getElementById('nomeUsuario');
   const nivelEl = document.getElementById('nivelUsuario');
@@ -15,203 +31,227 @@ document.addEventListener('DOMContentLoaded', () => {
   const avatarSmall = document.getElementById('avatar');
   const avatarGrande = document.getElementById('avatarGrande');
 
-  // elementos do mascote / painel
-  const mascoteBtn = document.getElementById('mascoteBtn');
-  const painelAtividades = document.getElementById('painelAtividades');
-  const fecharPainel = document.getElementById('fecharPainel');
-  const btnCompletarTudo = document.getElementById('btnCompletarTudo');
+  // mascote / painel de atividades
+  const mascoteBtn = document.getElementById('mascoteBtn');          // botão que mostra o painel
+  const painelAtividades = document.getElementById('painelAtividades'); // o painel/modal em si
+  const fecharPainel = document.getElementById('fecharPainel');     // botão fechar do painel
+  const btnCompletarTudo = document.getElementById('btnCompletarTudo'); // marcar tudo
+  const btnNotificacoes = document.getElementById('btnNotificacoes'); // notificações
+  const btnTema = document.getElementById('btnTema');               // alterna tema
+  const iconeTema = document.getElementById('iconeTema');           // ícone do tema
 
-  // carregar sessão do localStorage (se existir)
-  function carregarSessao() {
-    let sessao = null;
+  /* ---------- FUNÇÕES DE SESSÃO ---------- */
+  // lê sessão do localStorage (retorna objeto ou null)
+  function lerSessao() {
     try {
-      sessao = JSON.parse(localStorage.getItem(chaveSessao) || 'null');
+      return JSON.parse(localStorage.getItem(CHAVE_SESSAO) || 'null');
     } catch (e) {
-      console.warn('Erro parseando sessão:', e);
-      sessao = null;
-    }
-
-    if (sessao) {
-      const nome = sessao.username || sessao.email || 'Usuário';
-      const nivel = sessao.nivel ?? 5;
-      const pontos = typeof sessao.pontos === 'number' ? sessao.pontos : (sessao.pontos ? Number(sessao.pontos) : 1250);
-      const xpPercent = typeof sessao.xpPercent === 'number' ? sessao.xpPercent : (sessao.xpPercent ? Number(sessao.xpPercent) : 60);
-      const avatarUrl = sessao.avatar || null;
-
-      // preenche campos
-      nomeHeader.textContent = nome;
-      nomeCard.textContent = nome;
-      nivelEl.textContent = `Nível ${nivel}`;
-      pontosEl.textContent = `Pontos: ${Intl.NumberFormat('pt-BR').format(pontos)}`;
-      barraXp.style.width = `${xpPercent}%`;
-      xpPercentEl.textContent = `${xpPercent}%`;
-
-      // atualiza avatares (se existir URL)
-      if (avatarUrl) {
-        avatarSmall.style.backgroundImage = `url("${avatarUrl}")`;
-        avatarGrande.style.backgroundImage = `url("${avatarUrl}")`;
-      }
-    } else {
-      // fallback padrão
-      nomeHeader.textContent = 'Visitante';
-      nomeCard.textContent = 'Visitante';
-      nivelEl.textContent = 'Nível 0';
-      pontosEl.textContent = 'Pontos: 0';
-      barraXp.style.width = `0%`;
-      xpPercentEl.textContent = `0%`;
+      console.warn('Erro ao ler sessão:', e);
+      return null;
     }
   }
 
-  // abrir/fechar painel de atividades (toggle)
-  function togglePainel(mostrar) {
+  // salva sessão no localStorage (passar objeto)
+  function gravarSessao(obj) {
+    try {
+      localStorage.setItem(CHAVE_SESSAO, JSON.stringify(obj));
+      // Dispara evento storage local para sinalizar mudanças (útil em outras abas)
+      window.dispatchEvent(new Event('storage'));
+    } catch (e) {
+      console.warn('Erro ao gravar sessão:', e);
+    }
+  }
+
+  // cria sessão de exemplo (apenas se não existir) — útil para testes
+  function inicializarSessaoExemplo() {
+    let sess = lerSessao();
+    if (!sess) {
+      sess = {
+        username: 'Maria',
+        nivel: 5,
+        pontos: 1250,
+        xpPercent: 60,
+        avatar: '../img/avatar-default-large.jpg' // ajuste caso queira outra imagem
+      };
+      gravarSessao(sess);
+    }
+    return sess;
+  }
+
+  /* ---------- ATUALIZAÇÃO DA UI ---------- */
+  function carregarSessaoNaUI() {
+    const sessao = lerSessao() || inicializarSessaoExemplo();
+
+    const nome = sessao.username || sessao.email || 'Usuário';
+    const nivel = typeof sessao.nivel === 'number' ? sessao.nivel : (sessao.nivel || 0);
+    const pontos = typeof sessao.pontos === 'number' ? sessao.pontos : Number(sessao.pontos || 0);
+    const xpPercent = typeof sessao.xpPercent === 'number' ? sessao.xpPercent : Number(sessao.xpPercent || 0);
+
+    // preenche DOM
+    if (nomeHeader) nomeHeader.textContent = nome;
+    if (nomeCard) nomeCard.textContent = nome;
+    if (nivelEl) nivelEl.textContent = `Nível ${nivel}`;
+    if (pontosEl) pontosEl.textContent = `Pontos: ${Intl.NumberFormat('pt-BR').format(pontos)}`;
+    if (barraXp) barraXp.style.width = `${xpPercent}%`;
+    if (xpPercentEl) xpPercentEl.textContent = `${xpPercent}%`;
+
+    // atualiza avatares se existirem elementos
+    if (sessao.avatar) {
+      if (avatarSmall) avatarSmall.style.backgroundImage = `url("${sessao.avatar}")`;
+      if (avatarGrande) avatarGrande.style.backgroundImage = `url("${sessao.avatar}")`;
+    }
+  }
+
+  /* ---------- MASCOTE / PAINEL DE ATIVIDADES ---------- */
+  // abre ou fecha o painel de atividades
+  function togglePainelAtividades(mostrar) {
+    if (!painelAtividades) return;
     if (mostrar) {
       painelAtividades.classList.remove('hidden');
-      // foco para acessibilidade
       painelAtividades.setAttribute('tabindex', '-1');
       painelAtividades.focus();
     } else {
       painelAtividades.classList.add('hidden');
+      painelAtividades.removeAttribute('tabindex');
     }
   }
 
-  // marcar todas atividades como completas (exemplo: adiciona pontos e atualiza UI)
-  function completarTodasAtividades() {
-    // lê sessão
-    let sessao = null;
-    try { sessao = JSON.parse(localStorage.getItem(chaveSessao) || 'null'); } catch { sessao = null; }
-
-    if (!sessao) sessao = {};
-
-    // soma exemplo de pontos (200 + 120 + 80 = 400)
+  // ação quando usuário completa todas atividades (simulação)
+  function completarTodasAtividadesSimulado() {
+    // soma de recompensa (mesma soma usada no HTML: 200 + 120 + 80)
     const ganho = 200 + 120 + 80;
-    const pontosAtuais = typeof sessao.pontos === 'number' ? sessao.pontos : (sessao.pontos ? Number(sessao.pontos) : 0);
-    sessao.pontos = pontosAtuais + ganho;
 
-    // opcional: atualizar xpPercent também (simulação)
-    const xpAtual = typeof sessao.xpPercent === 'number' ? sessao.xpPercent : (sessao.xpPercent ? Number(sessao.xpPercent) : 60);
-    const novoXp = Math.min(100, xpAtual + 10);
+    let sess = lerSessao() || {};
+    sess.pontos = (typeof sess.pontos === 'number' ? sess.pontos : Number(sess.pontos || 0)) + ganho;
 
-    sessao.xpPercent = novoXp;
+    // atualiza XP (simples incremento)
+    sess.xpPercent = Math.min(100, (sess.xpPercent ?? 0) + 10);
 
-    // salva de volta
-    try { localStorage.setItem(chaveSessao, JSON.stringify(sessao)); }
-    catch (e) { console.warn('Erro salvando sessão:', e); }
+    gravarSessao(sess);
+    carregarSessaoNaUI();
 
-    // atualiza UI local sem reload
-    carregarSessao();
-
-    // feedback ao usuário
     alert(`Atividades concluídas! Você ganhou ${ganho} pontos.`);
-    // fecha painel após completar
-    togglePainel(false);
+    togglePainelAtividades(false);
   }
 
-  // eventos iniciais: mascote abre o painel
-  mascoteBtn.addEventListener('click', (ev) => {
-    ev.stopPropagation();
-    const aberto = !painelAtividades.classList.contains('hidden');
-    togglePainel(!aberto);
-  });
+  /* ---------- DELEGAÇÃO: BOTÕES -> ROTAS ---------- */
+  // delega clique dos cards para abrir páginas conforme ROTAS
+  function inicializarRotas() {
+    // botões principais (cards)
+    document.querySelectorAll('.acao-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const acao = btn.getAttribute('data-action');
+        if (ROTAS[acao]) {
+          // navega para a rota definida
+          window.location.href = ROTAS[acao];
+        } else {
+          // fallback: mensagem para dev
+          alert('Ação não mapeada (verifique ROTAS em home.js): ' + acao);
+        }
+      });
+    });
 
-  // fechar botão
-  fecharPainel.addEventListener('click', () => togglePainel(false));
+    // botões sugeridos (lista)
+    document.querySelectorAll('.btn-sug').forEach(btn => {
+      btn.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        const acao = btn.getAttribute('data-action');
+        if (ROTAS[acao]) {
+          window.location.href = ROTAS[acao];
+        } else {
+          alert('Conteúdo em desenvolvimento: ' + acao);
+        }
+      });
+    });
+  }
 
-  // completar tudo
-  btnCompletarTudo.addEventListener('click', completarTodasAtividades);
+  /* ---------- NOTIFICAÇÕES E TEMA ---------- */
+  if (btnNotificacoes) {
+    btnNotificacoes.addEventListener('click', () => {
+      alert('Você não tem notificações novas (simulação).');
+    });
+  }
 
-  // cliques fora do painel fecham (melhora UX)
+  // alterna tema claro/escuro e persiste preferência
+  (function initTema() {
+    if (!btnTema || !iconeTema) return;
+    const root = document.documentElement;
+    const temaSalvo = localStorage.getItem('lingua_tema');
+    if (temaSalvo === 'dark') {
+      root.classList.add('dark');
+      iconeTema.textContent = 'light_mode';
+    } else {
+      root.classList.remove('dark');
+      iconeTema.textContent = 'dark_mode';
+    }
+
+    btnTema.addEventListener('click', () => {
+      if (root.classList.contains('dark')) {
+        root.classList.remove('dark');
+        iconeTema.textContent = 'dark_mode';
+        localStorage.setItem('lingua_tema', 'light');
+      } else {
+        root.classList.add('dark');
+        iconeTema.textContent = 'light_mode';
+        localStorage.setItem('lingua_tema', 'dark');
+      }
+    });
+  })();
+
+  /* ---------- EVENTOS DO MASCOTE E PAINEL ---------- */
+  if (mascoteBtn) {
+    mascoteBtn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const aberto = !painelAtividades.classList.contains('hidden');
+      togglePainelAtividades(!aberto);
+    });
+  }
+
+  if (fecharPainel) {
+    fecharPainel.addEventListener('click', () => togglePainelAtividades(false));
+  }
+
+  if (btnCompletarTudo) {
+    btnCompletarTudo.addEventListener('click', () => {
+      if (confirm('Marcar todas as atividades como completas?')) {
+        completarTodasAtividadesSimulado();
+      }
+    });
+  }
+
+  // fecha painel ao clicar fora
   document.addEventListener('click', (ev) => {
-    const alvo = ev.target;
+    if (!painelAtividades) return;
     if (!painelAtividades.classList.contains('hidden')) {
-      // se o clique não foi no painel nem no mascote, fecha
+      const alvo = ev.target;
       if (!painelAtividades.contains(alvo) && !mascoteBtn.contains(alvo)) {
-        togglePainel(false);
+        togglePainelAtividades(false);
       }
     }
   });
 
   // tecla ESC fecha o painel
   document.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Escape' && !painelAtividades.classList.contains('hidden')) {
-      togglePainel(false);
+    if (ev.key === 'Escape' && painelAtividades && !painelAtividades.classList.contains('hidden')) {
+      togglePainelAtividades(false);
     }
   });
 
-  // Botões dos cards: delegação por data-action (vídeo, atividades, jogos, perfil)
-  document.querySelectorAll('.acao-card').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const acao = btn.getAttribute('data-action');
-      switch (acao) {
-        case 'video':
-          alert('Abrindo vídeo-aulas (simulação).');
-          break;
-        case 'atividades':
-          alert('Abrindo atividades (simulação).');
-          break;
-        case 'jogos':
-          alert('Abrindo jogos (simulação).');
-          break;
-        case 'perfil':
-          alert('Abrindo seu perfil (simulação).');
-          break;
-        default:
-          alert('Ação não mapeada: ' + acao);
-      }
-    });
-  });
+  /* ---------- INICIALIZAÇÃO ---------- */
+  // inicializa sessão exemplo caso não exista
+  inicializarSessaoExemplo();
+  // carrega valores na UI
+  carregarSessaoNaUI();
+  // inicializa rotas para botões
+  inicializarRotas();
 
-  // Botões sugeridos
-  document.querySelectorAll('.btn-sug').forEach(btn => {
-    btn.addEventListener('click', (ev) => {
-      const acao = btn.getAttribute('data-action');
-      ev.stopPropagation();
-      switch (acao) {
-        case 'iniciar-aula':
-        case 'iniciar-aula-2':
-          alert('Iniciando aula (simulação).');
-          break;
-        case 'iniciar-desafio':
-          alert('Iniciando desafio (simulação).');
-          break;
-        default:
-          alert('Ação sugerida: ' + acao);
-      }
-    });
-  });
+  /* ---------- OBSERVAÇÃO: onde editar imagens ------- */
+  // - Mascote: alterar o <img src="..."> dentro do botão #mascoteBtn no HTML.
+  // - Avatar pequeno: alterar background-image em .avatar-small no arquivo CSS (home.css).
+  // - Avatar grande: alterar background-image em .avatar-large no arquivo CSS (home.css).
+  //
+  // Exemplo rápido (HTML): <img src="../img/novo-mascote.png" class="mascote-img" />
+  // Exemplo CSS (home.css): .avatar-large { background-image: url("../img/meu-avatar.jpg"); }
 
-  // Notificações (simulação)
-  const btnNotificacoes = document.getElementById('btnNotificacoes');
-  btnNotificacoes.addEventListener('click', () => {
-    alert('Você não tem notificações novas (simulação).');
-  });
-
-  // Tema - alterna classe 'dark' no html
-  const btnTema = document.getElementById('btnTema');
-  const iconeTema = document.getElementById('iconeTema');
-  const root = document.documentElement;
-
-  // inicial: se já existe preferencia no localStorage
-  const temaSalvo = localStorage.getItem('lingua_tema');
-  if (temaSalvo === 'dark') {
-    root.classList.add('dark');
-    iconeTema.textContent = 'light_mode';
-  } else {
-    root.classList.remove('dark');
-    iconeTema.textContent = 'dark_mode';
-  }
-
-  btnTema.addEventListener('click', () => {
-    if (root.classList.contains('dark')) {
-      root.classList.remove('dark');
-      iconeTema.textContent = 'dark_mode';
-      localStorage.setItem('lingua_tema', 'light');
-    } else {
-      root.classList.add('dark');
-      iconeTema.textContent = 'light_mode';
-      localStorage.setItem('lingua_tema', 'dark');
-    }
-  });
-
-  // Inicializa a página com dados da sessão
-  carregarSessao();
+  /* ---------- FIM ---------- */
 });

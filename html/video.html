@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Videoaula - LínguaTech</title>
+
+  <!-- Fonte + icons (mantive o que você já usa) -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- CSS separado -->
+  <link rel="stylesheet" href="../css/video.css" />
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100">
+  <div class="video-root">
+
+    <!-- Topbar / Breadcrumb simples -->
+    <header class="video-header">
+      <div class="breadcrumbs">
+        <a href="../html/home.html" class="link-voltar"><span class="material-symbols-outlined">arrow_back</span></a>
+        <h1>Videoaulas — Acentuação Gráfica</h1>
+      </div>
+      <div class="video-meta">
+        <span class="badge">Nível 2</span>
+        <button id="btn-like" class="icon-btn" title="Curtir vídeo" aria-pressed="false">
+          <span class="material-symbols-outlined">thumb_up</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="video-main">
+      <!-- Player + controles -->
+      <section class="player-wrap">
+        <div class="player-card">
+          <video id="player" class="player-element" preload="metadata" playsinline>
+            <!-- Substitua src pelos seus arquivos -->
+            <source src="../media/exemplo1.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo.
+          </video>
+
+          <!-- Controles custom -->
+          <div class="controls">
+            <button id="btnPlay" class="ctrl" title="Reproduzir / Pausar"><span class="material-symbols-outlined">play_arrow</span></button>
+            <button id="btnRewind" class="ctrl" title="Voltar 5s"><span class="material-symbols-outlined">replay_5</span></button>
+            <button id="btnForward" class="ctrl" title="Avançar 10s"><span class="material-symbols-outlined">forward_10</span></button>
+
+            <div class="progress-wrap" aria-hidden="false">
+              <input id="progress" type="range" min="0" max="100" step="0.1" value="0" />
+              <div class="time">
+                <span id="timeCurrent">0:00</span> / <span id="timeTotal">0:00</span>
+              </div>
+            </div>
+
+            <input id="volume" type="range" min="0" max="1" step="0.01" value="1" title="Volume" />
+            <button id="btnFullscreen" class="ctrl" title="Tela cheia"><span class="material-symbols-outlined">fullscreen</span></button>
+          </div>
+
+          <!-- Descrição curta -->
+          <div class="descricao">
+            <h2 id="videoTitulo">Acentuação — Regras básicas</h2>
+            <p id="videoDescricao">Nesta videoaula você verá as regras essenciais para acentuação gráfica com exemplos práticos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Playlist / anotações -->
+      <aside class="playlist-wrap" aria-label="Lista de vídeos">
+        <div class="playlist-card">
+          <h3>Playlist</h3>
+          <ul id="playlist" class="playlist-list">
+            <!-- itens gerados pelo JS -->
+          </ul>
+
+          <div class="acoes-playlist">
+            <button id="btnPrev" class="btn-secondary">Anterior</button>
+            <button id="btnNext" class="btn-primary">Próximo</button>
+          </div>
+
+          <div class="notas">
+            <h4>Anotações rápidas</h4>
+            <textarea id="notas" placeholder="Escreva suas anotações..."></textarea>
+            <button id="btnSalvarNotas" class="btn-ghost">Salvar nota</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="../js/video.js" defer></script>
+</body>
+</html>

@@ -1,93 +1,152 @@
-/* estilo-home.css - ajustes visuais complementares (Tailwind cuida do restante) */
+/* estilo-home.css
+   Mantive a paleta: primary #3855C7, primary-soft #536CCF, light-blue #CADEFC
+   Todo o design aqui — HTML totalmente limpo.
+*/
 
-:root {
-    --primary: #3855C7;
-    --primary-soft: #536CCF;
-    --light-blue: #CADEFC;
-    --bg-light: #f6f6f8;
-    --bg-dark: #111521;
-  }
-  
-  /* body já estilizado pelo Tailwind; aqui só ajustes extras */
-  .size-12 { width: 48px; height: 48px; }
-  .size-10 { width: 40px; height: 40px; }
-  
-  /* cards */
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.25rem;
-    border-radius: 0.75rem;
-    border: 1px solid rgba(0,0,0,0.06);
-    background: white;
-    cursor: pointer;
-    transition: all .25s ease;
-    align-items: start;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 30px rgba(16,24,40,0.08);
-    border-color: var(--primary-soft);
-  }
-  .icone-card {
-    background: rgba(83,108,207,0.08);
-    color: var(--primary-soft);
-    padding: .5rem;
-    border-radius: .75rem;
-  }
-  
-  /* card titles */
-  .titulo-card {
-    font-weight: 700;
-    color: #111827;
-    margin: 0;
-    font-size: 1.125rem;
-  }
-  
-  /* Sugerido */
-  .sugerido-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    border: 1px solid rgba(0,0,0,0.06);
-  }
-  .sugerido-item .left {
-    display:flex;
-    gap: 1rem;
-    align-items:center;
-  }
-  .icone-sug {
-    background: var(--light-blue);
-    color: var(--primary);
-    padding: .6rem;
-    border-radius: .6rem;
-  }
-  .btn-sug {
-    background: var(--primary);
-    color: #fff;
-    padding: .5rem 1rem;
-    border-radius: .6rem;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-  }
-  .btn-sug:hover {
-    background: var(--primary-soft);
-  }
-  
-  /* header small adjustments */
-  header p { margin: 0; }
-  
-  /* Avatar grande fallback sizing */
-  #avatarGrande { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWZoPMI4wt0M9Zx6izoNjIXieWnR6PHttUqKo-eeFZOV04wrsHzhX8FfwMWWljtp90wxBEmT9eKEr1C6BT_6jXB0uRDTj1V8IVp2e7r_SVzd6yYNJX0FuFUrs81Ur9N93yNuips23VMspJd7AEljQ1xrUlNrMrqZiTHmFQOXU9umJUIJYSmvEPY56SllQnTJfXlqJrpMjZXdJmOfp1bz-wPbIjT5BNeQ8Ij4vbkaZnGf4TKn0XOVVNsJOd8RQ-um5fAzuF9MhDSSA'); }
-  
-  /* responsividade pontual */
-  @media (max-width: 880px) {
-    .card { align-items: stretch; }
-    .titulo-card { font-size: 1rem; }
-  }
-  
+:root{
+  --primary: #3855C7;
+  --primary-soft: #536CCF;
+  --light-blue: #CADEFC;
+  --bg-light: #f6f6f8;
+  --bg-dark: #111521;
+  --muted: #6b7280;
+}
+
+/* Reset visual básico */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+
+/* App root */
+.app-root{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  padding:1.5rem;
+}
+
+/* Header */
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+  padding:0.6rem 1rem;
+  border-radius:0.75rem;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* Header left */
+.header-left{display:flex;align-items:center;gap:0.9rem}
+.avatar-small{
+  width:46px;height:46px;border-radius:9999px;background-size:cover;background-position:center;
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqeyYjpPh2TLFOqlOISovcPV1wzjKjUm5bL8tM9CklD-cqU7Zd9VHPjNSa7eW0nRcuzvsnl-5Ir_GAfiilIo7WS3YoHltknw47tK0WE1F_2yTjCIvccuxt0XYwoaqKHiE1Wo1oNIrq3RQ-hBclSq8eo0anbXzGCYm-GfQWiZDqumB2TdIyr_K1xeD9I6Fg6_ZSBCNV4-fLuXsRjBcyl1uyliInSIojn_NLwuJ4G5D7To_YciGsAIZ54R6Vx8Q4UHjpxjwz_Dvtta4");
+  border: 2px solid rgba(56,85,199,0.08);
+}
+.header-texts .header-name{font-weight:700;margin:0}
+.header-texts .header-sub{margin:0;color:var(--muted);font-size:0.85rem}
+
+/* header buttons */
+.header-right{display:flex;gap:0.6rem;align-items:center}
+.icon-btn{
+  display:inline-grid;place-items:center;
+  width:44px;height:44px;border-radius:12px;border:none;background:transparent;color:inherit;
+  cursor:pointer;transition:all .18s ease;
+}
+.icon-btn:hover{transform:translateY(-3px);background:rgba(56,85,199,0.06)}
+
+/* Container principal */
+.container{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:1.25rem;
+  max-width:1200px;
+  margin:0 auto;
+  width:100%;
+}
+
+/* Painel de usuário (hero card) */
+.card-hero{
+  display:flex;
+  gap:1.25rem;
+  align-items:center;
+  padding:1.25rem;
+  border-radius:0.9rem;
+  background: linear-gradient(90deg, rgba(83,108,207,0.09), rgba(202,222,252,0.06));
+  box-shadow: 0 10px 30px rgba(16,24,40,0.04);
+  border: 1px solid rgba(83,108,207,0.06);
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+/* Painel left */
+.painel-left{display:flex;gap:1rem;align-items:center;min-width:0}
+
+/* Avatar grande com borda gradiente */
+.avatar-large{
+  width:88px;height:88px;border-radius:9999px;background-size:cover;background-position:center;
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDWZoPMI4wt0M9Zx6izoNjIXieWnR6PHttUqKo-eeFZOV04wrsHzhX8FfwMWWljtp90wxBEmT9eKEr1C6BT_6jXB0uRDTj1V8IVp2e7r_SVzd6yYNJX0FuFUrs81Ur9N93yNuips23VMspJd7AEljQ1xrUlNrMrqZiTHmFQOXU9umJUIJYSmvEPY56SllQnTJfXlqJrpMjZXdJmOfp1bz-wPbIjT5BNeQ8Ij4vbkaZnGf4TKn0XOVVNsJOd8RQ-um5fAzuF9MhDSSA");
+  box-shadow: 0 6px 18px rgba(56,85,199,0.12);
+  border: 4px solid #fff;
+}
+
+/* Dados do usuário */
+.usuario-dados{min-width:0}
+.usuario-nome{font-size:1.3rem;font-weight:800;margin:0}
+.usuario-nivel{color:var(--light-blue);margin:4px 0;font-weight:600}
+.usuario-pontos{color:#fff;opacity:0.9;margin:0;font-weight:500}
+
+/* Painel direito (XP + ações) */
+.painel-right{flex:1;min-width:260px;display:flex;flex-direction:column;gap:1rem;justify-content:center}
+
+/* XP row */
+.xp-row{display:flex;flex-direction:column;gap:0.6rem}
+.xp-labels{display:flex;justify-content:space-between;align-items:center;color:#ffffff}
+.xp-labels p{margin:0;font-weight:600}
+.xp-percent{font-weight:700}
+
+/* barra xp */
+.barra-xp-outer{background: rgba(202,222,252,0.4);border-radius:9999px;height:12px;overflow:hidden}
+.barra-xp-inner{height:100%;background:#ffffff;border-radius:9999px;transition:width .6s cubic-bezier(.2,.9,.3,1)}
+
+/* Ações rápidas (cards como botões) */
+.acoes-rapidas{display:flex;gap:0.6rem;flex-wrap:wrap}
+.acao-card{
+  display:inline-flex;align-items:center;gap:0.6rem;padding:0.6rem 0.9rem;border-radius:12px;border:none;background:#fff;color:var(--primary);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.04);cursor:pointer;font-weight:700;transition:all .18s ease;
+}
+.acao-card span.material-symbols-outlined{font-size:1.4rem}
+.acao-card:hover{transform:translateY(-6px);box-shadow: 0 14px 30px rgba(16,24,40,0.08)}
+.acao-card:active{transform:translateY(-2px)}
+
+/* Sugeridos */
+.sugeridos{margin-top:0.6rem}
+.sec-title{font-size:1.125rem;font-weight:800;margin:0 0 0.8rem 0}
+.sugeridos-list{display:flex;flex-direction:column;gap:0.75rem}
+
+/* item sugerido */
+.sug-item{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:12px;padding:0.9rem;border:1px solid rgba(13,18,25,0.04);box-shadow: 0 8px 24px rgba(16,24,40,0.03)}
+.sug-left{display:flex;align-items:center;gap:0.9rem}
+.icone-sug{width:46px;height:46px;border-radius:10px;display:grid;place-items:center;background:var(--light-blue);color:var(--primary);font-weight:700}
+.sug-type{margin:0;color:var(--muted);font-size:0.85rem}
+.sug-title{margin:0;font-weight:700;font-size:1.0rem}
+
+/* botão sugerido */
+.btn-sug{background:var(--primary);color:#fff;padding:0.55rem 0.9rem;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+.btn-sug:hover{background:var(--primary-soft);transform:translateY(-3px)}
+
+/* Responsividade */
+@media (max-width: 980px){
+  .card-hero{flex-direction:column;align-items:flex-start;gap:1rem}
+  .avatar-large{width:76px;height:76px}
+  .acoes-rapidas{width:100%;justify-content:space-between}
+  .acao-card{flex:1;justify-content:center}
+}
+@media (max-width: 680px){
+  .app-root{padding:1rem}
+  .header{padding:0.5rem}
+  .container{width:100%}
+  .sug-title{font-size:0.98rem}
+}

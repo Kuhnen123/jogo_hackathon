@@ -8,7 +8,7 @@ document.getElementById("formLogin").addEventListener("submit", function(event) 
       alert("Preencha todos os campos!");
     } else {
       alert("Login realizado com sucesso!");
-      window.location.href = "index.html";
+      window.location.href = "./../html/home.html";
     }
   });
   

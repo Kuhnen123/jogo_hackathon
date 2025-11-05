@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil do Estudante</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="./../css/perfil.css"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+  <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="p-4 md:p-8">
+      <div class="flex flex-col gap-8">
+
+        <!-- Profile Header & Progress -->
+        <div class="bg-white dark:bg-background-dark rounded-xl shadow-sm p-6">
+          <div class="flex w-full flex-col gap-6 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center">
+            <div class="flex gap-6">
+              <div id="avatarPerfil" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-32 w-32" data-alt="Avatar do usuário" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDV3GAYUIF_TnK8I7Ak-8sEWfkScWDnZBNG9BgfisVv-jVSrPaebXSAM_myq5TFqiP_cGfTK-mYIlw2_ACtvnlWrCMcPq2M4EZky87b4ATsDplKBwiEO-1mtrsGL7DsbG-Fxm_NUT_cxi8yGmTgqu8ekNb-zdDXnJuxrZ_VBCyT8TcnURo-cZiMo8bdLOBvX47-WRS5FfpKXcIlAtE-StkoSCAfWmeyoX-1hGsAyzXwt5H7WTHnI1V9rvoAOU8AJg5mTPqFTTjRiFE");'></div>
+              <div class="flex flex-col justify-center">
+                <p id="nomePerfil" class="text-gray-900 dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">João Silva</p>
+                <p id="nivelPerfil" class="text-primary dark:text-primary-light text-base font-medium leading-normal">Nível 5 - Mestre das Palavras</p>
+                <p id="pontosPerfil" class="text-gray-500 dark:text-gray-400 text-sm font-normal">Pontos: 12.500</p>
+              </div>
+            </div>
+
+            <button id="btnConfig" class="flex items-center justify-center h-10 w-10 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" title="Configurações">
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col gap-2 mt-6">
+            <div class="flex gap-6 justify-between">
+              <p class="text-gray-900 dark:text-gray-200 text-base font-medium leading-normal">Progresso para o próximo nível</p>
+              <span id="xpPercentHeader" class="text-primary dark:text-primary-light font-semibold">75%</span>
+            </div>
+            <div class="rounded-full bg-primary-light dark:bg-gray-700 h-3">
+              <div id="barraProgresso" class="h-3 rounded-full bg-primary" style="width: 75%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meus Avatares -->
+        <div>
+          <h2 class="text-gray-900 dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Meus Avatares</h2>
+
+          <div id="listaAvatares" class="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4 p-4">
+            <!-- desbloqueado (exemplo) -->
+            <div class="flex flex-col gap-3 text-center">
+              <div class="relative group avatar-item" data-avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuBW7tGhYJNbUXnEwtDIRXo_yscSQGbKdkG-n7K4X8syZu9i86TPVXNoOblsV0YYWh3noTWwzLawQU3CZmUNxV2Ov3sgvd4jbCk9RavfSR08JFGiXBvwHf_7tMPolf5q0TW3T1_FlGfAPzQz1gSzMdnIIUKGM7roLL1XKdYM0NEVgN3Omz413DyM9c-069MSBf3ktvPcndzfzWWgBlgrrNWXD2BlAfA0NjkKtlt3NjXnzDR-9lbJsHULjms6zz1-aW8zZwCsnAl40J4">
+                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-primary dark:border-primary-dark" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBW7tGhYJNbUXnEwtDIRXo_yscSQGbKdkG-n7K4X8syZu9i86TPVXNoOblsV0YYWh3noTWwzLawQU3CZmUNxV2Ov3sgvd4jbCk9RavfSR08JFGiXBvwHf_7tMPolf5q0TW3T1_FlGfAPzQz1gSzMdnIIUKGM7roLL1XKdYM0NEVgN3Omz413DyM9c-069MSBf3ktvPcndzfzWWgBlgrrNWXD2BlAfA0NjkKtlt3NjXnzDR-9lbJsHULjms6zz1-aW8zZwCsnAl40J4");'></div>
+                <div class="overlay-text">Selecionado</div>
+              </div>
+            </div>
+
+            <!-- desbloqueado (outro exemplo) -->
+            <div class="flex flex-col gap-3 text-center">
+              <div class="relative group avatar-item cursor-pointer" data-avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuCYNGIvYD0uxBQQzx0bPWjhsDjflTf1xA8MigiT3FcEQDh0FeFeyienEEIXud530gjb_Cw0irZCrwf6PfNGuNuwUTJk_cXjHbnL7asmX7LRtpZGPu2M8vmbj2vY8u_MvZnYuwoOdd84auFO68Yk3dE3wafQ7IVBZipfhUrA9BxUl8z0ymP4Q9xeTqPES32qL1DD8GVfI5PrF6bT_BoAE7gReu46-ZI8Ce2mEHDKI6yeQ_xRwZ5uavU2O0hdSPg3W1i0R0nIZSr9Pzo">
+                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-4 border-transparent hover:border-primary-light" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYNGIvYD0uxBQQzx0bPWjhsDjflTf1xA8MigiT3FcEQDh0FeFeyienEEIXud530gjb_Cw0irZCrwf6PfNGuNuwUTJk_cXjHbnL7asmX7LRtpZGPu2M8vmbj2vY8u_MvZnYuwoOdd84auFO68Yk3dE3wafQ7IVBZipfhUrA9BxUl8z0ymP4Q9xeTqPES32qL1DD8GVfI5PrF6bT_BoAE7gReu46-ZI8Ce2mEHDKI6yeQ_xRwZ5uavU2O0hdSPg3W1i0R0nIZSr9Pzo");'></div>
+                <div class="overlay-text">Selecionar</div>
+              </div>
+            </div>
+
+            <!-- skin bloqueada: irá redirecionar para comprar-skins.html -->
+            <div class="flex flex-col gap-3 text-center">
+              <div class="relative group avatar-item locked"
+                   data-skin-id="skin-ouro"
+                   data-skin-name="Skin Ouro">
+                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
+                </div>
+                <div class="overlay-text">Comprar</div>
+              </div>
+            </div>
+
+            <!-- outra skin bloqueada -->
+            <div class="flex flex-col gap-3 text-center">
+              <div class="relative group avatar-item locked"
+                   data-skin-id="skin-prata"
+                   data-skin-name="Skin Prata">
+                <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
+                </div>
+                <div class="overlay-text">Comprar</div>
+              </div>
+            </div>
+
+            <!-- placeholders bloqueados (exemplos) -->
+            <div class="flex flex-col gap-3 text-center">
+              <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3 text-center">
+              <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">lock</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Progress Section with Tabs -->
+        <div class="bg-white dark:bg-background-dark rounded-xl shadow-sm">
+          <div class="pb-3">
+            <div class="flex border-b border-gray-200 dark:border-gray-700 px-6 gap-8">
+              <a id="tab-historico" class="tab tab-active" href="#" data-target="conteudo-historico">
+                <p class="text-sm font-bold leading-normal tracking-[0.015em]">Histórico de Desempenho</p>
+              </a>
+              <a id="tab-conquistas" class="tab" href="#" data-target="conteudo-conquistas">
+                <p class="text-sm font-bold leading-normal tracking-[0.015em]">Conquistas</p>
+              </a>
+            </div>
+          </div>
+
+          <div id="conteudo-historico" class="p-6 tab-content">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Meu Desempenho</h3>
+            <div class="w-full h-64 bg-primary-light/30 dark:bg-gray-800 rounded-lg p-4 flex items-end gap-2">
+              <div class="flex-1 rounded-t-md bg-primary" style="height: 60%;"></div>
+              <div class="flex-1 rounded-t-md bg-primary" style="height: 40%;"></div>
+              <div class="flex-1 rounded-t-md bg-primary" style="height: 75%;"></div>
+              <div class="flex-1 rounded-t-md bg-primary" style="height: 55%;"></div>
+              <div class="flex-1 rounded-t-md bg-primary" style="height: 85%;"></div>
+              <div class="flex-1 rounded-t-md bg-primary" style="height: 95%;"></div>
+              <div class="flex-1 rounded-t-md bg-primary" style="height: 70%;"></div>
+            </div>
+
+            <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 px-2 mt-1">
+              <span>Sem 1</span>
+              <span>Sem 2</span>
+              <span>Sem 3</span>
+              <span>Sem 4</span>
+              <span>Sem 5</span>
+              <span>Sem 6</span>
+              <span>Sem 7</span>
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mt-8 mb-4">Atividades Recentes</h3>
+            <ul class="space-y-3">
+              <li class="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-primary-dark dark:text-primary-light">task_alt</span>
+                  <p class="font-medium text-gray-700 dark:text-gray-300">Missão de Ortografia</p>
+                </div>
+                <span class="font-bold text-green-500">+250 pontos</span>
+              </li>
+              <li class="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-primary-dark dark:text-primary-light">task_alt</span>
+                  <p class="font-medium text-gray-700 dark:text-gray-300">Desafio de Acentuação</p>
+                </div>
+                <span class="font-bold text-green-500">+180 pontos</span>
+              </li>
+              <li class="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-primary-dark dark:text-primary-light">task_alt</span>
+                  <p class="font-medium text-gray-700 dark:text-gray-300">Revisão de Crase</p>
+                </div>
+                <span class="font-bold text-green-500">+300 pontos</span>
+              </li>
+            </ul>
+          </div>
+
+          <div id="conteudo-conquistas" class="p-6 tab-content hidden">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Conquistas</h3>
+            <p class="text-gray-600 dark:text-gray-400">Aqui aparecerão as conquistas do estudante.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="./../js/perfil.js"></script>
+</body>
+</html>

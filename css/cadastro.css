@@ -1,149 +1,137 @@
-/* estilo-cadastro.css */
-* { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; padding: 0; }
-
+/* css/cadastro.css */
 body {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background-color: #f6f6f8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-/* Container principal */
-.container {
-  display: flex;
-  width: 100%;
-  max-width: 1000px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  overflow: hidden;
-}
-
-/* Lado da ilustração */
-.imagem-lado {
-  flex: 1;
-  min-width: 280px;
-  background-color: #CADEFC;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 28px;
-}
-
-.imagem-lado img {
-  width: 90%;
-  max-width: 420px;
-  display: block;
-}
-
-/* Lado do formulário */
-.formulario {
-  flex: 1;
-  padding: 36px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Títulos */
-.formulario h1 {
-  color: #3855C7;
-  font-size: 26px;
-  margin: 0 0 6px 0;
-}
-
-.formulario p {
-  color: #5b5b5b;
-  margin: 0 0 18px 0;
-  font-size: 14px;
-}
-
-/* Campos do formulário */
-label {
-  display: block;
-  margin-top: 12px;
-  color: #333333;
-  font-size: 14px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"],
-select,
-textarea {
-  width: 100%;
-  padding: 12px 14px;
-  margin-top: 6px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  background: #fafafa;
-  font-size: 14px;
-  color: #1f2937;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: #536CCF;
-  box-shadow: 0 0 0 4px rgba(83,108,207,0.07);
-}
-
-/* Botão */
-button {
-  width: 100%;
-  background-color: #3855C7;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 20px;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  background-color: #536CCF;
-}
-
-/* Texto de link / já tem conta */
-.cadastro-texto {
-  text-align: center;
-  margin-top: 16px;
-  font-size: 14px;
-  color: #6b7280;
-}
-
-.cadastro-texto a {
-  color: #3855C7;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.cadastro-texto a:hover {
-  text-decoration: underline;
-}
-
-/* Responsividade */
-@media (max-width: 880px) {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
   .container {
-    flex-direction: column;
-    max-width: 640px;
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
   }
-
+  
   .imagem-lado {
-    display: none; /* esconder ilustração em telas pequenas */
+    flex: 1;
+    background-color: #CADEFC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-
+  
+  .imagem-lado img {
+    width: 90%;
+    max-width: 400px;
+    object-fit: contain;
+  }
+  
   .formulario {
-    padding: 28px;
+    flex: 1;
+    padding: 40px;
   }
-}
+  
+  h1 {
+    color: #3855C7;
+    margin: 0 0 8px 0;
+    font-size: 28px;
+  }
+  
+  .formulario p {
+    margin: 0 0 18px 0;
+    color: #666;
+  }
+  
+  /* labels e inputs */
+  label {
+    display: block;
+    margin-top: 15px;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fff;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  
+  input::placeholder {
+    color: #9aa4b2;
+  }
+  
+  input:focus {
+    border-color: #3855C7;
+    box-shadow: 0 4px 14px rgba(56,85,199,0.08);
+    outline: none;
+  }
+  
+  /* botão */
+  button {
+    width: 100%;
+    background-color: #3855C7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color .15s ease, transform .08s ease;
+  }
+  
+  button:hover {
+    background-color: #536CCF;
+    transform: translateY(-2px);
+  }
+  
+  /* texto de link / já tem conta */
+  .cadastro-texto {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .cadastro-texto a {
+    color: #3855C7;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .cadastro-texto a:hover {
+    text-decoration: underline;
+  }
+  
+  /* responsividade simples */
+  @media (max-width: 900px) {
+    .container {
+      flex-direction: column;
+      width: 92%;
+      max-width: 520px;
+    }
+  
+    .imagem-lado {
+      display: none; /* esconde a ilustração em telas pequenas para ficar igual ao login */
+    }
+  
+    .formulario {
+      padding: 28px;
+    }
+  }
+  

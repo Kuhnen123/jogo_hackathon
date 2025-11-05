@@ -1,0 +1,149 @@
+/* estilo-cadastro.css */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background-color: #f6f6f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Container principal */
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* Lado da ilustração */
+.imagem-lado {
+  flex: 1;
+  min-width: 280px;
+  background-color: #CADEFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+
+.imagem-lado img {
+  width: 90%;
+  max-width: 420px;
+  display: block;
+}
+
+/* Lado do formulário */
+.formulario {
+  flex: 1;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Títulos */
+.formulario h1 {
+  color: #3855C7;
+  font-size: 26px;
+  margin: 0 0 6px 0;
+}
+
+.formulario p {
+  color: #5b5b5b;
+  margin: 0 0 18px 0;
+  font-size: 14px;
+}
+
+/* Campos do formulário */
+label {
+  display: block;
+  margin-top: 12px;
+  color: #333333;
+  font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #fafafa;
+  font-size: 14px;
+  color: #1f2937;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #536CCF;
+  box-shadow: 0 0 0 4px rgba(83,108,207,0.07);
+}
+
+/* Botão */
+button {
+  width: 100%;
+  background-color: #3855C7;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  background-color: #536CCF;
+}
+
+/* Texto de link / já tem conta */
+.cadastro-texto {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.cadastro-texto a {
+  color: #3855C7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cadastro-texto a:hover {
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 880px) {
+  .container {
+    flex-direction: column;
+    max-width: 640px;
+  }
+
+  .imagem-lado {
+    display: none; /* esconder ilustração em telas pequenas */
+  }
+
+  .formulario {
+    padding: 28px;
+  }
+}

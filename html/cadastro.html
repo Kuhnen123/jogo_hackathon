@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - LínguaTech</title>
+  <link rel="stylesheet" href="./../css/cadastro.css">
+</head>
+<body>
+  <div class="container">
+    <div class="imagem-lado">
+      <img src="./../img/imagem.logo.png">
+    </div>
+
+    <div class="formulario">
+      <h1>Crie sua conta</h1>
+      <p>Preencha as informações abaixo para começar a aprender.</p>
+      <form id="formCadastro">
+        <label>Nome completo</label>
+        <input type="text" id="nome" placeholder="Digite seu nome" required>
+
+        <label>E-mail</label>
+        <input type="email" id="email" placeholder="Digite seu e-mail" required>
+
+        <label>Senha</label>
+        <input type="password" id="senha" placeholder="Crie uma senha" required>
+
+        <label>Confirme a senha</label>
+        <input type="password" id="confirmar" placeholder="Confirme sua senha" required>
+
+        <button type="submit">Cadastrar</button>
+      </form>
+
+      <p class="cadastro-texto">Já tem uma conta? <a href="login.html">se logue</a></p>
+    </div>
+  </div>
+
+  <script src="./../js/cadastro.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Plataforma de Alfabetização</title>
+
+  <!-- Tailwind + fontes + icons (mantive o que você já usou) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- Config do Tailwind (mantive suas cores) -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#3855C7",
+            "primary-soft": "#536CCF",
+            "background-light": "#f6f6f8",
+            "background-dark": "#111521",
+            "light-blue": "#CADEFC",
+            "gray-light": "#C4C4C4"
+          },
+          fontFamily: { "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"] },
+          borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" }
+        }
+      }
+    }
+  </script>
+
+  <!-- Seu CSS separado -->
+  <link rel="stylesheet" href="css/estilo-home.css"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+
+  <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+      <div class="flex items-center gap-4">
+        <div class="flex size-12 shrink-0 items-center">
+          <div id="avatar" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-10 w-10" 
+               style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqeyYjpPh2TLFOqlOISovcPV1wzjKjUm5bL8tM9CklD-cqU7Zd9VHPjNSa7eW0nRcuzvsnl-5Ir_GAfiilIo7WS3YoHltknw47tK0WE1F_2yTjCIvccuxt0XYwoaqKHiE1Wo1oNIrq3RQ-hBclSq8eo0anbXzGCYm-GfQWiZDqumB2TdIyr_K1xeD9I6Fg6_ZSBCNV4-fLuXsRjBcyl1uyliInSIojn_NLwuJ4G5D7To_YciGsAIZ54R6Vx8Q4UHjpxjwz_Dvtta4");'></div>
+        </div>
+        <div>
+          <p id="nomeUsuarioHeader" class="text-sm text-gray-700 dark:text-gray-200 font-semibold">Usuário</p>
+          <p id="subHeader" class="text-xs text-gray-500 dark:text-gray-400">Bem-vindo</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2">
+        <button id="btnNotificacoes" class="flex items-center justify-center rounded-full h-12 w-12 bg-transparent text-gray-700 dark:text-gray-300" title="Notificações">
+          <span class="material-symbols-outlined text-2xl">notifications</span>
+        </button>
+
+        <!-- botão tema -->
+        <button id="btnTema" class="flex items-center justify-center rounded-full h-12 w-12 bg-transparent text-gray-700 dark:text-gray-300" title="Alternar tema">
+          <span id="iconeTema" class="material-symbols-outlined text-2xl">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="p-4">
+      <!-- Painel do usuário -->
+      <section class="bg-primary-soft dark:bg-primary rounded-xl p-6 @container">
+        <div class="flex w-full flex-col gap-6 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center">
+          <div class="flex gap-4 items-center">
+            <div id="avatarGrande" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-32 w-32 border-4 border-white"></div>
+
+            <div class="flex flex-col justify-center">
+              <p id="nomeUsuario" class="text-white text-[28px] font-bold leading-tight tracking-[-0.015em]">Nome Usuário</p>
+              <p id="nivelUsuario" class="text-light-blue text-lg font-medium leading-normal">Nível 0</p>
+              <p id="pontosUsuario" class="text-white text-base font-normal leading-normal mt-1">Pontos: 0</p>
+            </div>
+          </div>
+
+          <!-- progresso -->
+          <div class="flex flex-col gap-3 mt-6">
+            <div class="flex gap-6 justify-between">
+              <p class="text-white text-base font-medium leading-normal">XP para o próximo nível</p>
+              <span id="xpPercent" class="text-white text-sm">0%</span>
+            </div>
+            <div class="rounded-full bg-light-blue/50 h-3 w-full">
+              <div id="barraXp" class="h-3 rounded-full bg-white" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards rápidos -->
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+        <div class="card" data-action="video">
+          <div class="icone-card"><span class="material-symbols-outlined text-3xl">play_circle</span></div>
+          <h2 class="titulo-card">Vídeo-aulas</h2>
+        </div>
+
+        <div class="card" data-action="atividades">
+          <div class="icone-card"><span class="material-symbols-outlined text-3xl">edit</span></div>
+          <h2 class="titulo-card">Atividades</h2>
+        </div>
+
+        <div class="card" data-action="jogos">
+          <div class="icone-card"><span class="material-symbols-outlined text-3xl">stadia_controller</span></div>
+          <h2 class="titulo-card">Jogos</h2>
+        </div>
+
+        <div class="card" data-action="perfil">
+          <div class="icone-card"><span class="material-symbols-outlined text-3xl">person</span></div>
+          <h2 class="titulo-card">Meu Perfil</h2>
+        </div>
+      </section>
+
+      <!-- Sugerido -->
+      <section class="mt-8">
+        <h3 class="text-gray-900 dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em] px-0 pb-4 pt-4">Sugerido para você</h3>
+
+        <div class="flex flex-col gap-4">
+          <div class="sugerido-item">
+            <div class="left">
+              <div class="icone-sug"><span class="material-symbols-outlined">school</span></div>
+              <div>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Aula</p>
+                <p class="text-gray-900 dark:text-white font-semibold text-lg">Acentuação Gráfica</p>
+              </div>
+            </div>
+            <button class="btn-sug" data-action="iniciar-aula">Começar</button>
+          </div>
+
+          <div class="sugerido-item">
+            <div class="left">
+              <div class="icone-sug"><span class="material-symbols-outlined">quiz</span></div>
+              <div>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Desafio</p>
+                <p class="text-gray-900 dark:text-white font-semibold text-lg">O Uso da Crase</p>
+              </div>
+            </div>
+            <button class="btn-sug" data-action="iniciar-desafio">Jogar</button>
+          </div>
+
+          <div class="sugerido-item">
+            <div class="left">
+              <div class="icone-sug"><span class="material-symbols-outlined">school</span></div>
+              <div>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Aula</p>
+                <p class="text-gray-900 dark:text-white font-semibold text-lg">Concordância Verbal</p>
+              </div>
+            </div>
+            <button class="btn-sug" data-action="iniciar-aula-2">Começar</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="js/home.js"></script>
+</body>
+</html>

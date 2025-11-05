@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // botões principais (cards)
     video: '../html/video-aulas.html',
     atividades: '../html/atividades.html',
-    jogos: '../html/jogos.html',
+    jogos: '../html/competicao.html',
     perfil: '../html/perfil.html',
 
     // botões sugeridos (cada ação aponta para uma tela específica)

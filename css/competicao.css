@@ -1,0 +1,50 @@
+/* tela_competicao.css
+   Estilos customizados leves — Tailwind já faz grande parte.
+   Mantive a paleta e classes do seu design original.
+*/
+
+/* material symbols */
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+/* variáveis rápidas */
+:root {
+  --primary: #3855C7;
+  --light-blue: #CADEFC;
+  --bg-light: #F6F6F8;
+  --muted: #6b7280;
+}
+
+/* reset mínimo */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* frase alvo: cada caractere é um span que será colorido via JS */
+#frase-alvo { word-break: break-word; }
+
+/* estilos para caracteres corretos/incorretos */
+.fr-char { display:inline-block; white-space:pre-wrap; }
+.fr-char.correct { color: #3855C7; }      /* verde */
+.fr-char.incorrect { color: #dc2626; text-decoration: underline; } /* vermelho */
+
+/* textarea */
+#input-digitacao {
+  border-radius: 0.5rem;
+  min-height: 12rem;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* status line */
+#status-line { color: var(--muted); }
+
+/* ranking list small tweaks */
+#ranking-list li img { object-fit: cover; }
+
+/* botões */
+#btn-pause { background: transparent; border: none; cursor: pointer; }
+
+/* responsividade leve */
+@media (max-width: 900px) {
+  aside { order: 2; }
+  main { order: 1; }
+}

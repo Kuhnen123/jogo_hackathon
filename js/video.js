@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'v1',
       title: 'Acentuação — Regras básicas',
       src: '../media/exemplo1.mp4',
-      thumb: '../img/acentuacao',
+      thumb: '../img/acentuacao.png',
       descricao: 'Regras fundamentais de acentuação com exemplos.',
       duracao: '08:34'
     },
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'v2',
       title: 'Acentuação: ditongos e hiatos',
       src: '../media/exemplo2.mp4',
-      thumb: '../img/ditonfoshiatos',
+      thumb: '../img/ditonfoshiatos.png',
       descricao: 'Quando usar acento em ditongos e hiatos.',
       duracao: '06:10'
     },
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'v3',
       title: 'Acentuação: casos especiais',
       src: 'https://youtu.be/YXcG4cLgxuw?si=0DGP__tudpjqNLq_',
-      thumb: '../img/casosespeciais',
+      thumb: '../img/casosespeciais.png',
       descricao: 'Exceções e casos práticos.',
       duracao: '05:45'
     }

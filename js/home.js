@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     perfil: '../html/perfil.html',
 
     // botões sugeridos (cada ação aponta para uma tela específica)
-    'iniciar-aula': '../html/aula-acentuacao.html',
-    'iniciar-desafio': '../html/desafio-crase.html',
-    'iniciar-aula-2': '../html/aula-concordancia.html'
+    'iniciar-aula': '../html/video.html',
+    'iniciar-desafio': '../html/atividade.html',
+    'iniciar-aula-2': '../html/video.html'
   };
 
   /* ---------- ELEMENTOS DO DOM ---------- */
@@ -255,3 +255,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- FIM ---------- */
 });
+// === Notificações / Configurações - comportamento (em português) ===
+document.addEventListener('DOMContentLoaded', () => {
+  const btnNotificacoes = document.getElementById('btnNotificacoes');
+  const popover = document.getElementById('popoverNotificacoes');
+  const fecharPopover = document.getElementById('fecharPopover');
+  const btnConfig = document.getElementById('btnConfig');
+
+  // Abre/fecha o popover de notificações
+  function togglePopover(show) {
+    if (!popover) return;
+    if (show) {
+      popover.classList.remove('hidden');
+      popover.setAttribute('aria-hidden', 'false');
+      btnNotificacoes.setAttribute('aria-expanded', 'true');
+    } else {
+      popover.classList.add('hidden');
+      popover.setAttribute('aria-hidden', 'true');
+      btnNotificacoes.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  // clique no ícone de notificação: alterna o popover
+  btnNotificacoes.addEventListener('click', (ev) => {
+    ev.stopPropagation(); // evita que o documento capture o clique e feche imediatamente
+    const aberto = !popover.classList.contains('hidden');
+    togglePopover(!aberto);
+  });
+
+  // fechar pelo botão ×
+  fecharPopover.addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    togglePopover(false);
+  });
+
+  // fecha o popover ao clicar fora
+  document.addEventListener('click', (ev) => {
+    if (!popover.classList.contains('hidden')) {
+      const alvo = ev.target;
+      if (!popover.contains(alvo) && !btnNotificacoes.contains(alvo)) {
+        togglePopover(false);
+      }
+    }
+  });
+
+  // tecla ESC fecha o popover
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && !popover.classList.contains('hidden')) {
+      togglePopover(false);
+    }
+  });
+
+  // Botão de configurações: navega para a página de configurações
+  btnConfig.addEventListener('click', () => {
+    // ajuste o caminho se sua estrutura de pastas for diferente
+    window.location.href = '../html/configuracoes.html';
+  });
+
+});
+

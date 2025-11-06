@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Configurações</title>
+
+  <!-- Tailwind (opcional, mantive sua config original) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Material Symbols + fonte -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <!-- CSS separado -->
+  <link rel="stylesheet" href="../css/configuracoes.css">
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+  <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+
+    <!-- header -->
+    <div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+      <button id="btnVoltar" class="text-slate-800 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="Voltar">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <h1 class="text-slate-800 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Configurações</h1>
+      <div class="size-10 shrink-0"></div>
+    </div>
+
+    <main class="flex-1 px-4 py-5 space-y-8">
+
+      <!-- Seção Notificações -->
+      <section>
+        <h2 class="text-primary-light dark:text-primary-lighter text-xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Notificações</h2>
+        <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm">
+          <div class="flex items-center gap-4 px-4 min-h-14 justify-between border-b border-slate-200 dark:border-slate-700">
+            <div class="flex items-center gap-4">
+              <div class="text-slate-800 dark:text-white flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 shrink-0 size-10">
+                <span class="material-symbols-outlined">notifications</span>
+              </div>
+              <p class="text-slate-800 dark:text-white text-base font-normal leading-normal flex-1 truncate">Ativar todas as notificações</p>
+            </div>
+            <div class="shrink-0">
+              <!-- toggle principal -->
+              <label class="toggle">
+                <input id="toggleTodas" type="checkbox" />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="px-4 pt-2 pb-4">
+            <label class="flex gap-x-3 py-3 flex-row items-center">
+              <input id="notif-lembretes" type="checkbox" />
+              <p class="text-slate-800 dark:text-slate-300 text-base font-normal leading-normal">Lembretes de estudo</p>
+            </label>
+
+            <label class="flex gap-x-3 py-3 flex-row items-center">
+              <input id="notif-missoes" type="checkbox" />
+              <p class="text-slate-800 dark:text-slate-300 text-base font-normal leading-normal">Novas missões disponíveis</p>
+            </label>
+
+            <label class="flex gap-x-3 py-3 flex-row items-center">
+              <input id="notif-mensagens" type="checkbox" />
+              <p class="text-slate-800 dark:text-slate-300 text-base font-normal leading-normal">Mensagens de amigos</p>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Áudio -->
+      <section>
+        <h2 class="text-primary-light dark:text-primary-lighter text-xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Áudio</h2>
+        <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4 space-y-6">
+          <div class="space-y-2">
+            <label for="music-volume" class="text-slate-800 dark:text-white text-base font-normal leading-normal flex items-center gap-2">
+              <span class="material-symbols-outlined text-xl">music_note</span> Volume da música
+            </label>
+            <input id="music-volume" type="range" min="0" max="100" value="70"/>
+          </div>
+
+          <div class="space-y-2">
+            <label for="sfx-volume" class="text-slate-800 dark:text-white text-base font-normal leading-normal flex items-center gap-2">
+              <span class="material-symbols-outlined text-xl">volume_up</span> Volume dos efeitos sonoros
+            </label>
+            <input id="sfx-volume" type="range" min="0" max="100" value="50"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Acessibilidade -->
+      <section>
+        <h2 class="text-primary-light dark:text-primary-lighter text-xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Acessibilidade</h2>
+        <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4 space-y-6">
+          <div>
+            <p class="text-slate-800 dark:text-white text-base font-normal leading-normal mb-3 flex items-center gap-2">
+              <span class="material-symbols-outlined text-xl">format_size</span> Tamanho do texto
+            </p>
+
+            <div class="flex justify-between gap-2 p-1 bg-slate-100 dark:bg-slate-700 rounded-lg">
+              <label>
+                <input class="sr-only" name="font-size" type="radio" value="small"/>
+                <span class="font-option">Pequeno</span>
+              </label>
+
+              <label>
+                <input class="sr-only" name="font-size" type="radio" value="medium" checked/>
+                <span class="font-option">Médio</span>
+              </label>
+
+              <label>
+                <input class="sr-only" name="font-size" type="radio" value="large"/>
+                <span class="font-option">Grande</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 justify-between">
+            <div class="flex items-center gap-4">
+              <div class="text-slate-800 dark:text-white flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 shrink-0 size-10">
+                <span class="material-symbols-outlined">contrast</span>
+              </div>
+              <p class="text-slate-800 dark:text-white text-base font-normal leading-normal flex-1 truncate">Modo de Alto Contraste</p>
+            </div>
+            <div class="shrink-0">
+              <label class="toggle">
+                <input id="alto-contraste" type="checkbox" />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="sticky bottom-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm p-4">
+      <button id="btnSalvar" class="w-full bg-primary hover:bg-primary-light text-white font-bold py-3 px-4 rounded-lg shadow-md transition-colors">
+        Salvar Alterações
+      </button>
+    </footer>
+
+    <!-- Toast simples -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  </div>
+
+  <!-- JS separado -->
+  <script src="../js/configuracoes.js" defer></script>
+</body>
+</html>

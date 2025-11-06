@@ -37,25 +37,46 @@
   <div class="app-root">
 
     <!-- Header -->
-    <header class="header">
-      <div class="header-left">
-        <div id="avatar" class="avatar-small" aria-hidden="true"></div>
-        <div class="header-texts">
-          <p id="nomeUsuarioHeader" class="header-name">Usuário</p>
-          <p id="subHeader" class="header-sub">Bem-vindo</p>
-        </div>
-      </div>
+   <header class="header">
+  <div class="header-left">
+    
+    <div id="avatar" class="avatar-small" aria-hidden="true"></div>
+    <div class="header-texts">
+      <p id="nomeUsuarioHeader" class="header-name">Usuário</p>
+      <p id="subHeader" class="header-sub">Bem-vindo</p>
+    </div>
+  </div>
 
-      <div class="header-right">
-        <button id="btnNotificacoes" class="icon-btn" title="Notificações" aria-label="Notificações">
-          <span class="material-symbols-outlined">notifications</span>
-        </button>
+  <div class="header-right" style="position:relative;">
+    <!-- Botão de Notificações (agora abre popover) -->
+    <button id="btnNotificacoes" class="icon-btn" title="Notificações" aria-label="Notificações" aria-expanded="false" aria-controls="popoverNotificacoes">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
 
-        <button id="btnTema" class="icon-btn" title="Alternar tema" aria-pressed="false" aria-label="Alternar tema">
-          <span id="iconeTema" class="material-symbols-outlined">dark_mode</span>
-        </button>
+    <!-- Popover de Notificações (inicialmente escondido) -->
+    <div id="popoverNotificacoes" class="popover-notificacoes hidden" role="region" aria-live="polite" aria-hidden="true">
+      <div class="popover-header">
+        <strong>Notificações</strong>
+        <button id="fecharPopover" class="fechar-popover" aria-label="Fechar">×</button>
       </div>
-    </header>
+      <div class="popover-body">
+        <p>O jogo de digitação será lançado em breve.</p>
+        <p class="muted">Fique atento às atualizações — você será notificado quando estiver disponível.</p>
+      </div>
+    </div>
+
+    <!-- Botão de Configurações (leva para tela configuracoes.html) -->
+    <button id="btnConfig" class="icon-btn" title="Configurações" aria-label="Configurações">
+      <span class="material-symbols-outlined">settings</span>
+    </button>
+
+    <!-- Botão de Tema -->
+    <button id="btnTema" class="icon-btn" title="Alternar tema" aria-pressed="false" aria-label="Alternar tema">
+      <span id="iconeTema" class="material-symbols-outlined">dark_mode</span>
+    </button>
+  </div>
+</header>
+
 
     <main class="container">
       <!-- Painel do usuário -->

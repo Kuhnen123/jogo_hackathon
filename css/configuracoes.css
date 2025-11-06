@@ -1,0 +1,75 @@
+/* configuracoes.css - estilos específicos da tela de configurações */
+
+/* manter material symbols e fonte via HTML */
+
+/* variáveis e reset */
+:root{
+  --primary: #3855C7;
+  --primary-light: #536CCF;
+  --bg-light: #f6f6f8;
+  --bg-dark: #111521;
+  --muted: #6b7280;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* header */
+.size-10{width:40px;height:40px}
+.flex{display:flex}
+.relative{position:relative}
+
+/* toggle genérico */
+.toggle { display:inline-block; position:relative; width:51px; height:31px; cursor:pointer; }
+.toggle input { position:absolute; inset:0; opacity:0; width:100%; height:100%; margin:0; cursor:pointer; z-index:2; }
+.toggle-track { position: absolute; inset:0; background: #e6e6e6; border-radius: 999px; display:flex; align-items:center; padding:4px; transition: background .18s ease; }
+.toggle-thumb { width:27px; height:100%; background:white; border-radius:999px; box-shadow: 0 3px 8px rgba(0,0,0,0.12); transform: translateX(0); transition: transform .18s cubic-bezier(.2,.9,.3,1); }
+.toggle input:checked + .toggle-track { background: var(--primary); }
+.toggle input:checked + .toggle-track .toggle-thumb { transform: translateX(20px); }
+
+/* principais blocos */
+.bg-white{background:#fff}
+.bg-background-light{background:var(--bg-light)}
+.bg-background-dark{background:var(--bg-dark)}
+.dark\:bg-slate-800{background:#0f1724}
+
+/* sections */
+main{padding:20px;}
+section h2{margin:0 0 8px 0;padding:0 16px}
+
+/* inputs range básicos */
+input[type="range"]{
+  -webkit-appearance:none; appearance:none;
+  width:100%; height:8px; border-radius:8px; background:#e6e7eb; outline:none;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:50%; background:var(--primary); cursor:pointer;
+}
+
+/* opções de fonte */
+.font-option{display:block;padding:10px;text-align:center;border-radius:8px;background:transparent;color:#334155;font-weight:600;cursor:pointer}
+input[type="radio"]:checked + .font-option { background: rgba(56,85,199,0.08); color: var(--primary); }
+
+/* footer/button */
+footer{padding:16px}
+button#btnSalvar{width:100%;}
+
+/* toast */
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 110px;
+  background: #0b1220;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.4);
+  z-index: 9999;
+}
+.hidden { display: none !important; }
+
+/* responsividade */
+@media (max-width: 640px){
+  .size-10{width:36px;height:36px}
+  .toast { right: 12px; bottom: 90px; width: calc(100% - 24px); text-align:center; }
+}

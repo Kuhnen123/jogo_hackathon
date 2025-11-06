@@ -10,8 +10,8 @@
 :root {
   --primary: #3855C7;
   --light-blue: #CADEFC;
-  --bg-light: #F6F6F8;
-  --muted: #6b7280;
+  --bg-light: #1C2B5A;
+  --muted: #A0B0D0;
 }
 
 /* reset mínimo */
@@ -19,12 +19,16 @@
 html, body { height: 100%; margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
 
 /* frase alvo: cada caractere é um span que será colorido via JS */
-#frase-alvo { word-break: break-word; }
-
 /* estilos para caracteres corretos/incorretos */
-.fr-char { display:inline-block; white-space:pre-wrap; }
-.fr-char.correct { color: #3855C7; }      /* verde */
-.fr-char.incorrect { color: #dc2626; text-decoration: underline; } /* vermelho */
+.fr-char {
+  display: inline-block;
+  white-space: pre-wrap;
+  color: #374151; /* cor padrão para os caracteres */
+}
+
+.fr-char.correct { color: #10b981; }    /* verde para correto */
+.fr-char.incorrect { color: #dc2626; text-decoration: underline; } /* vermelho para incorreto */
+
 
 /* textarea */
 #input-digitacao {
@@ -47,4 +51,9 @@ html, body { height: 100%; margin: 0; font-family: 'Plus Jakarta Sans', sans-ser
 @media (max-width: 900px) {
   aside { order: 2; }
   main { order: 1; }
+}
+
+/* cor cinza forte para textos principais */
+.texto-escuro {
+  color: #374151 !important; /* gray-800 */
 }

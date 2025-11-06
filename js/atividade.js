@@ -64,19 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const bloco = document.createElement('div');
       bloco.className = 'pergunta';
       bloco.innerHTML = `
-        <div class="mb-2 font-semibold">Questão ${i+1}</div>
-        <div class="mb-2">${q.enunciado.replace('___', '<strong>_____</strong>')}</div>
-        <div role="radiogroup" aria-labelledby="q${i}-label" class="space-y-2">
-          ${q.alternativas.map((alt, j) => {
-            return `
-              <label class="alternativa" data-q="${i}" data-alt="${j}">
-                <input class="input-radio" type="radio" name="q${i}" value="${j}" />
-                <span class="ml-2">${alt}</span>
-              </label>
-            `;
-          }).join('')}
-        </div>
+  <div class="mb-2 font-semibold texto-escuro-forte">Questão ${i+1}</div>
+  <div class="mb-2 texto-escuro-forte">${q.enunciado.replace('___', '<strong>_____</strong>')}</div>
+  <div role="radiogroup" aria-labelledby="q${i}-label" class="space-y-2">
+    ${q.alternativas.map((alt, j) => {
+      return `
+        <label class="alternativa texto-escuro" data-q="${i}" data-alt="${j}">
+          <input class="input-radio" type="radio" name="q${i}" value="${j}" />
+          <span class="ml-2">${alt}</span>
+        </label>
       `;
+    }).join('')}
+  </div>
+`;
+
       containerPerguntas.appendChild(bloco);
     });
   }

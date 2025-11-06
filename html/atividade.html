@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atividades - LínguaTech</title>
+
+  <!-- Tailwind (mantive para utilitários) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- CSS separado -->
+  <link rel="stylesheet" href="../css/atividade.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100">
+
+  <div class="min-h-screen flex gap-6 p-6 max-w-1400 mx-auto">
+
+    <!-- Barra lateral com lista de atividades -->
+    <nav class="w-72 bg-white dark:bg-gray-900 rounded-xl p-4 shadow-md flex-shrink-0">
+      <h2 class="text-lg font-bold mb-3">Atividades</h2>
+      <ul id="listaAtividades" class="space-y-2">
+        <li>
+          <button class="atividade-btn atividade-ativa" data-target="atividade-crase" aria-controls="atividade-crase">
+            <span class="material-symbols-outlined align-middle">g_translate</span>
+            <span class="ml-2 align-middle">Crase — Teste Rápido</span>
+          </button>
+        </li>
+        <li>
+          <button class="atividade-btn" data-target="atividade-acentuacao" aria-controls="atividade-acentuacao">
+            <span class="material-symbols-outlined align-middle">edit</span>
+            <span class="ml-2 align-middle">Acentuação</span>
+          </button>
+        </li>
+        <li>
+          <button class="atividade-btn" data-target="atividade-concordancia" aria-controls="atividade-concordancia">
+            <span class="material-symbols-outlined align-middle">spellcheck</span>
+            <span class="ml-2 align-middle">Concordância</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
+        <p class="text-sm text-gray-600 dark:text-gray-400">Progresso</p>
+        <div class="mt-2">
+          <div class="w-full bg-gray-200 dark:bg-gray-700 h-3 rounded-full overflow-hidden">
+            <div id="progressoGlobalBar" class="h-3 bg-primary" style="width:0%"></div>
+          </div>
+          <p id="progressoGlobalText" class="text-sm mt-2">0% completado</p>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Área principal: cada atividade fica dentro de um painel com id específico -->
+    <main class="flex-1">
+
+      <!-- Cabeçalho da seção -->
+      <header class="mb-4 flex items-center justify-between">
+        <h1 class="text-2xl font-bold">Atividades Interativas</h1>
+        <div class="text-sm text-gray-600 dark:text-gray-300">Escolha uma atividade à esquerda e teste seus conhecimentos.</div>
+      </header>
+
+      <!-- Conteúdos das atividades -->
+      <section id="conteudoAtividades" class="space-y-6">
+
+        <!-- ATIVIDADE: Crase (quiz) -->
+        <article id="atividade-crase" class="atividade-card">
+          <h2 class="text-xl font-semibold mb-2">Teste de Crase</h2>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Escolha a alternativa correta para completar as frases com ou sem crase.</p>
+
+          <form id="formCrase" class="space-y-4" autocomplete="off">
+            <!-- perguntas geradas pelo JS -->
+            <div id="perguntasCrase" class="space-y-4"></div>
+
+            <div class="flex items-center gap-3 mt-4">
+              <button id="btnEnviarCrase" type="submit" class="btn btn-primary">Enviar respostas</button>
+              <button id="btnRefazerCrase" type="button" class="btn btn-ghost">Refazer</button>
+              <div id="resultadoCrase" class="ml-auto text-sm font-semibold"></div>
+            </div>
+          </form>
+        </article>
+
+        <!-- ATIVIDADE: Acentuação (placeholder) -->
+        <article id="atividade-acentuacao" class="atividade-card hidden">
+          <h2 class="text-xl font-semibold mb-2">Acentuação — Em breve</h2>
+          <p class="text-gray-600 dark:text-gray-300">Aqui você poderá praticar regras de acentuação. (Espaço reservado — você pode adicionar perguntas neste bloco.)</p>
+        </article>
+
+        <!-- ATIVIDADE: Concordância (placeholder) -->
+        <article id="atividade-concordancia" class="atividade-card hidden">
+          <h2 class="text-xl font-semibold mb-2">Concordância — Em breve</h2>
+          <p class="text-gray-600 dark:text-gray-300">Atividades de concordância verbal e nominal serão adicionadas aqui.</p>
+        </article>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- JS separado -->
+  <script src="../js/atividade.js"></script>
+</body>
+</html>

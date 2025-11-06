@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- MAPA DE ROTAS (edite conforme suas pastas) ---------- */
   const ROTAS = {
     // botões principais (cards)
-    video: '../html/video-aulas.html',
-    atividades: '../html/atividades.html',
+    video: '../html/video.html',
+    atividades: '../html/atividade.html',
     jogos: '../html/competicao.html',
     perfil: '../html/perfil.html',
 
